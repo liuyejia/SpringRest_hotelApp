@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<script src="/js/lib/jquery.min.js"></script>
+	<link href="/css/bootstrap.css" rel="stylesheet"/>
+	<link href="/css/b_room.css" rel="stylesheet"/>
+	<script src="/js/lib/bootstrap.min.js"></script>
+	<script src="/js/lib/moment.min.js"></script>
+	<script src="/js/checking.js"></script>
+	<!-- bootstrap -->
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<div>
+		<p class="col-md-offset-4">
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">身份证号/手机号：</label> <input type="text" class="form-control" id="names" />
+				</div>
+			</form>
+		</p>
+		<p class="col-md-offset-4">
+			<div class="operation">
+				<button id="checkings" class="btn btn-warning" style="width: 40%">查询</button>
+			</div>
+			<div class="operation">
+				<button id="checked" class="btn btn-warning" style="width: 40%">入住</button>
+			</div>
+		</p>
+	</div>
+	<div >
+		<p id="orderList"></p>
+	</div>
+	
+	<div id="hideDiv">
+		<select id="selectRoom" ></select>
+		
+		<button id="selectOK">OK</button>
+	</div>
+</body>
+</html>

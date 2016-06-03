@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<title>Cloud Admin | Flot Charts</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"/>
+	<meta name="description" content=""/>
+	<meta name="author" content=""/>
+	<script src="/js/lib/jquery.min.js"></script>
+	<link href="/css/bootstrap.css" rel="stylesheet"/>
+	<link href="/css/b_room.css" rel="stylesheet"/>
+	<script src="/js/lib/bootstrap.min.js"></script>
+</head>
+<body>
+	<!-- HEADER -->
+	<div th:include="fragments/header">
+    Header
+    </div>
+<!--/HEADER -->
+
+<!-- PAGE -->
+<section id="page">
+	<!-- SIDEBAR -->
+	    <div th:include="fragments/siderbar">siderbar</div>
+	    
+		<div id="main-content">
+			<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					  <h4 class="modal-title">Box Settings</h4>
+					</div>
+					<div class="modal-body">
+					  Here goes box setting content.
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					  <button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+			<div class="container">
+				<div class="row">
+					<div id="content" class="col-lg-12">
+						<!-- PAGE HEADER-->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="page-header">
+									<!-- STYLER -->
+									
+									<!-- /STYLER -->
+									<!-- BREADCRUMBS -->
+									<ul class="breadcrumb">
+										<li>
+											<i class="fa fa-home"></i>
+											<a href="index.html">首页</a>
+										</li>
+										<li>
+											<a href="#">报表统计</a>
+										</li>
+										<li>Flot Charts</li>
+									</ul>
+									<!-- /BREADCRUMBS -->
+									<div class="clearfix">
+										<h3 class="content-title pull-left">Flot Charts</h3>
+									</div>
+									<div class="description">Beautiful Flot Line, Bar and Pie Charts</div>
+								</div>
+							</div>
+						</div>
+						<!-- /PAGE HEADER -->
+						<!-- BASIC CHART -->
+						
+						<div class="col-md-10 main">
+						<div class="col-md-12">
+							<ul class="nav nav-pills col-md-6" id="myTab">
+								<li class="active">
+									<a id="timebutton" href="#time" data-toggle="tab">时间——销量</a>
+								</li>
+								<li >
+									<a id="typebutton"  href="#type" data-toggle="tab">房型——销量</a>
+								</li>
+								<li >
+									<a id="customerbutton" href="#customer" data-toggle="tab">顾客——销量</a>
+								</li>
+							</ul>
+							
+						</div>
+						
+						
+						<div class="separator"></div>
+						
+						
+						
+						<div class="tab-content" style="padding-top:80px">
+					
+							<div id="time" class="tab-pane active" >
+							
+								<div class="col-md-6" >
+									<a id="href1" href="#" class="calcu btn btn-default">按天数统计<span id="span1"></span></a>
+									<a id="href2" href="#" class="calcu btn btn-info">按月份统计<span id="span2"></span></a>
+									<a id="href3" href="#" class="calcu btn btn-success">按年份统计<span id="span3"></span></a>
+								</div>
+								
+								<div class="separator"></div>
+							
+								<div class="row">
+									<div class="col-md-12">
+										<!-- BOX -->
+										<div class="box border orange">
+											<div class="box-title">
+												<h4><i class="fa fa-signal"></i>Basic Chart</h4>
+												<div class="tools">
+													<a href="#box-config" data-toggle="modal" class="config">
+														<i class="fa fa-cog"></i>
+													</a>
+													<a href="javascript:;" class="reload">
+														<i class="fa fa-refresh"></i>
+													</a>
+													<a href="javascript:;" class="collapse">
+														<i class="fa fa-chevron-up"></i>
+													</a>
+													<a href="javascript:;" class="remove">
+														<i class="fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+											<div class="box-body">
+												<div id="chart_1" class="chart"></div>
+											</div>
+										</div>
+										<!-- /BOX -->
+									</div>
+								</div>	
+							</div>
+							<div id="type" class="tab-pane">
+								<form class="form-inline">
+									<div class="form-group">
+										<label for="exampleInputName2">年份：</label> 
+										<select
+											class="form-control" id="quantity">
+										</select>
+									</div>
+								</form>
+								
+								<div class="separator"></div>
+								
+								<div class="row">
+									<div class="col-md-12">
+										<!-- BOX -->
+										<div class="box border orange">
+											<div class="box-title">
+												<h4><i class="fa fa-signal"></i>Basic Chart</h4>
+												<div class="tools">
+													<a href="#box-config" data-toggle="modal" class="config">
+														<i class="fa fa-cog"></i>
+													</a>
+													<a href="javascript:;" class="reload">
+														<i class="fa fa-refresh"></i>
+													</a>
+													<a href="javascript:;" class="collapse">
+														<i class="fa fa-chevron-up"></i>
+													</a>
+													<a href="javascript:;" class="remove">
+														<i class="fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+											<div class="box-body">
+												<div id="chart_2" class="chart"></div>
+											</div>
+										</div>
+										<!-- /BOX -->
+									</div>
+								</div>
+								
+								<div class="separator"></div>
+								<div class="row" id="pie_con_2">
+									<div class="col-md-12">
+										<!-- BOX -->
+										<div class="box border orange">
+											<div class="box-title">
+												<h4><i class="fa fa-signal"></i>Basic Chart</h4>
+												<div class="tools">
+													<a href="#box-config" data-toggle="modal" class="config">
+														<i class="fa fa-cog"></i>
+													</a>
+													<a href="javascript:;" class="reload">
+														<i class="fa fa-refresh"></i>
+													</a>
+													<a href="javascript:;" class="collapse">
+														<i class="fa fa-chevron-up"></i>
+													</a>
+													<a href="javascript:;" class="remove">
+														<i class="fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+											<div class="box-body">
+												<div id="chart_2_pie" class="chart"></div>
+											</div>
+										</div>
+										<!-- /BOX -->
+									</div>
+								</div>
+							</div>
+							<div id="customer" class="tab-pane">
+							
+								<div class="col-md-6" >
+									<a id="a1" href="#" class="holyshit btn btn-default">年龄——销量</a>
+									<a id="a2" href="#" class="holyshit btn btn-info">性别——销量</a>
+									
+								</div>
+								<div class="separator"></div>
+								<form class="form-inline">
+									<div class="form-group">
+										<label for="exampleInputName2">年份：</label> 
+										<select
+											class="form-control" id="quantity3">
+										</select>
+									</div>
+								</form>
+								<div class="separator"></div>
+								<div class="row">
+									<div class="col-md-12">
+										<!-- BOX -->
+										<div class="box border orange">
+											<div class="box-title">
+												<h4><i class="fa fa-signal"></i>Basic Chart</h4>
+												<div class="tools">
+													<a href="#box-config" data-toggle="modal" class="config">
+														<i class="fa fa-cog"></i>
+													</a>
+													<a href="javascript:;" class="reload">
+														<i class="fa fa-refresh"></i>
+													</a>
+													<a href="javascript:;" class="collapse">
+														<i class="fa fa-chevron-up"></i>
+													</a>
+													<a href="javascript:;" class="remove">
+														<i class="fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+											<div class="box-body">
+												<div id="chart_3" class="chart"></div>
+											</div>
+										</div>
+										<!-- /BOX -->
+									</div>
+								</div>
+								
+								<div class="separator"></div>
+								<div class="row" id="pie_con_3">
+									<div class="col-md-12">
+										<!-- BOX -->
+										<div class="box border orange">
+											<div class="box-title">
+												<h4><i class="fa fa-signal"></i>Basic Chart</h4>
+												<div class="tools">
+													<a href="#box-config" data-toggle="modal" class="config">
+														<i class="fa fa-cog"></i>
+													</a>
+													<a href="javascript:;" class="reload">
+														<i class="fa fa-refresh"></i>
+													</a>
+													<a href="javascript:;" class="collapse">
+														<i class="fa fa-chevron-up"></i>
+													</a>
+													<a href="javascript:;" class="remove">
+														<i class="fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+											<div class="box-body">
+												<div id="chart_3_pie" class="chart"></div>
+											</div>
+										</div>
+										<!-- /BOX -->
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+						</div>
+						
+						<!-- /BASIC CHART -->
+						<div class="separator"></div>
+						
+						<!-- /ROW 5 -->
+						<div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+						</div>
+					</div><!-- /CONTENT-->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<!-- FLOT CHARTS -->
+	<script src="/js/lib/jquery.flot.min.js"></script>
+	<script src="/js/lib/jquery.flot.time.min.js"></script>
+    <script src="/js/lib/jquery.flot.selection.min.js"></script>
+	<script src="/js/lib/jquery.flot.resize.min.js"></script>
+    <script src="/js/lib/jquery.flot.pie.min.js"></script>
+    <script src="/js/lib/jquery.flot.stack.min.js"></script>
+    <script src="/js/lib/jquery.flot.crosshair.min.js"></script>
+	<!-- COOKIE -->
+	<script type="text/javascript" src="/js/lib/jquery.cookie.min.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="/js/script.js"></script>
+	
+	<script src="/js/charts-manage.js"></script>
+	<script src="/js/lib/moment.min.js"></script>
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("flot_charts");  //Set current page
+			App.init(); //Initialise plugins and elements
+			
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

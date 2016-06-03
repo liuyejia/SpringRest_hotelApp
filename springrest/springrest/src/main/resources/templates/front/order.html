@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hotel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/bootstrap.min.js"></script>
+</head>
+<body>
+	<div th:include="fragments/front_header">Header</div>
+
+	<div class="container" style="margin-top: 15px">
+		<div class="col-md-9">
+			<div class="col-md-3">预定信息</div>
+			<div class="col-md-9"
+				style="background-color: #eff6fc; padding: 2%; border-bottom: 1px solid;">
+				<p>
+					<label>入住日期：</label> <span id="pretime">2016-03-04</span>
+				</p>
+				<p>
+					<label>退房日期：</label> <span id="posttime">2016-03-04</span> <span><a
+						class="btn btn-primary btn-xs" data-toggle="modal"
+						data-target="#editModal" role="button">修改日期</a> <!-- <button type="submit"
+							class="btn btn-primary btn-xs">修改日期</button> --></span>
+				</p>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="exampleInputName2">房间数量：</label> <!-- <input type="text"
+							class="form-control" id="quantity" th:value="${order.quantity}" /> -->
+						<input type="hidden" id="remain" th:value="${order.roomtype.remain}" />
+						<select
+							class="form-control" id="quantity">
+						</select>
+						<span class="label label-danger" id="book-alert" style="display: none">房间已订完</span>
+					</div>
+				</form>
+
+			</div>
+			<div class="col-md-3">个人信息</div>
+			<div class="col-md-9"
+				style="background-color: #eff6fc; padding: 2%; border-bottom: 1px solid;">
+				<p>
+					<label>您此行的主要目的：</label> <label class="radio-inline"> <input
+						type="radio" name="purpose" value="休闲" checked="checked" /> 休闲
+					</label> <label class="radio-inline"> <input type="radio"
+						name="purpose" value="商务" /> 商务
+					</label>
+				</p>
+				<p>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="exampleInputName2" style="width:60px">姓名：</label> <input type="text"
+							class="form-control" id="name" />
+					</div>
+				</form>
+				</p>
+				<p>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="exampleInputName2" style="width:60px">身份证：</label> <input type="text"
+							class="form-control" id="indentity" />
+					</div>
+				</form>
+				</p>
+				<p>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="exampleInputName2" style="width:60px">手机：</label> <input type="text"
+							class="form-control" id="phone" />
+					</div>
+				</form>
+				</p>
+				<p>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="exampleInputName2" style="width:60px">邮箱：</label> <input type="email"
+							class="form-control" id="email" />
+					</div>
+				</form>
+				</p>
+			</div>
+			<div class="col-md-3">特殊要求</div>
+			<div class="col-md-9" style="background-color: #eff6fc; padding: 2%">
+				<p>我们会尽力安排，但无法确保一定满足您的要求。</p>
+				<textarea class="form-control" rows="3" id="demand"></textarea>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">您的选择</h3>
+				</div>
+				<div class="panel-body">
+					<div>
+						<input type="hidden" id="room-price"
+							th:value="${order.roomtype.price}" /> <input type="hidden"
+							id="room-discount" th:value="${order.roomtype.discount}" />
+						<p>
+							<img th:src="@{~/images/front/__${order.roomtype.picture}__}" class="img-responsive"
+								alt="Cinque Terre" />
+						</p>
+						<p>
+							<strong th:text="${order.roomtype.name}">标准单间</strong>
+						</p>
+						<p>
+							单价：<strong id="price"></strong>元
+						</p>
+						<p>
+							数量:<strong id="choose-number" th:text="${order.quantity}"></strong>间
+						</p>
+						<p>
+							入住:<strong id="duration"></strong>天
+						</p>
+					</div>
+					<div style="background-color: #FFFAED">
+						<h3>
+							订单总额：<span style="color: #FF6600" id="cost">200元</span>
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+
+		<div class="col-md-12">
+			<div class="col-md-offset-4">
+				<a type="button" class="btn btn-primary" id="submit-order">下一步，支付</a>
+				<!-- <button type="submit" class="btn btn-primary">下一步，支付</button> -->
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改日期</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="new-pre">入住</label> 
+							<input class="date" type="text" id="new-pre" placeholder="年-月-日" />
+						</div>
+						<div class="form-group">
+							<label for="new-post">退房</label>
+							<input class="date" type="text" id="new-post" placeholder="年-月-日" />
+						</div>
+						<a type="button" class="btn btn-primary" id="edit-time">确定</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--提交的表单 -->
+	<form action="/hotel/submit-order/" method="post" id="orderform"
+		style="display: none">
+		<input type="text" name="pretime" id="form-pretime"
+			th:value="${order.pretime}" /> <input type="text" name="posttime"
+			id="form-posttime" th:value="${order.posttime}" /> <input
+			type="text" name="phone" id="form-phone" /> <input type="text"
+			name="email" id="form-email" /> <input type="text"
+			name="customername" id="form-customername" /> <input type="text"
+			name="indentity" id="form-indentity" /> <input type="text"
+			name="purpose" id="form-purpose" /> <input type="text" name="demand"
+			id="form-demand" /> <input type="text" name="quantity"
+			id="form-quantity" th:value="${order.quantity}" /> <input type="text" name="typenumber"
+			id="form-typenumber" th:value="${order.roomtype.id}" />
+	</form>
+
+	<div th:include="fragments/front_footer">Footer</div>
+</body>
+
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="/js/front/order.js"></script>
+</html>

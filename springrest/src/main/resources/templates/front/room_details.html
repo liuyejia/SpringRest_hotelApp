@@ -1,0 +1,46 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Details</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+</head>
+<body>
+<!-- start header -->
+	<div th:include="fragments/front_header">
+    Header
+    </div>
+<!--start main -->
+<div class="main_bg">
+<div class="wrap">
+	<div class="main">
+		<div class="details">
+			<h2 th:text="${room.name}">Lorem ipsum dolor sit amet consectetur adipisicing</h2>
+			<div class="det_pic">
+				  <img th:src="@{~/images/front/__${room.picture}__}" alt="" />
+			</div>
+			<div class="det_text">
+				<p class="para" th:text="${room.introduction}"></p>
+				<div class="read_more">
+					 <a type="button" id="book-btn">立即预定</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>		
+<form action="/hotel/book-room/" method="post" id="bookform" style="display: none">
+<input type="text" name="pretime" id="form-pretime"/>
+<input type="text" name="posttime" id="form-posttime"/>
+<input type="text" name="quantity" value="1"/>
+<input type="text" name="typenumber" th:value="${room.id}"/>
+</form>
+<!--start footer -->
+<div th:include="fragments/front_footer">
+    Footer
+</div>	
+
+</body>
+<script src="/js/front/details.js"></script>
+</html>

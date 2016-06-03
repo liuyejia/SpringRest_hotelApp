@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<title>Cloud Admin | Orders</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+</head>
+<body>
+	<!-- HEADER -->
+	<div th:include="fragments/header">Header</div>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div th:include="fragments/siderbar">siderbar</div>
+
+		<div id="main-content">
+			<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="box-config" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Box Settings</h4>
+						</div>
+						<div class="modal-body">Here goes box setting content.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save
+								changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+			<div class="container">
+				<div class="row">
+					<div id="content" class="col-lg-12">
+						<!-- PAGE HEADER-->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="page-header">
+									<!-- STYLER -->
+
+									<!-- /STYLER -->
+									<!-- BREADCRUMBS -->
+									<ul class="breadcrumb">
+										<li><i class="fa fa-home"></i> <a href="index.html">首页</a>
+										</li>
+										<li>订单管理</li>
+									</ul>
+									<!-- /BREADCRUMBS -->
+									<div class="clearfix">
+										<h3 class="content-title pull-left">Orders</h3>
+									</div>
+									<div class="description">Order Details and Payments</div>
+								</div>
+							</div>
+						</div>
+						<!-- /PAGE HEADER -->
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">订单查询</h3>
+							</div>
+							<div class="panel-body">
+								<form action="" class="form-inline" role="form">
+									<div class="form-group">
+										<label for="pretime" class="control-label">起始时间:</label> <input
+											class="date" type="text" id="pretime" placeholder="年-月-日" />
+									</div>
+									
+									<div class="form-group">
+										<label for="posttime" class="control-label">结束时间:</label> <input
+											class="date" type="text" id="posttime" placeholder="年-月-日" />
+									</div>
+									<div class="form-group">
+										<label for="state" class="control-label">订单状态:</label> <select
+											class="form-control" id="status">
+											<option value="0">所有</option>
+											<option value="1">已预订</option>
+											<option value="2">已支付</option>
+											<option value="3">进行中</option>
+											<option value="4">已过期</option>
+											<option value="5">已完成</option>
+											<option value="6">已取消</option>
+										</select>
+
+									</div>
+									<div class="form-group">
+										<label for="state" class="control-label">房间类型:</label> <select
+											class="form-control" id="type">
+											<option value="0">所有</option>
+											<option th:each="type : ${type}" th:value="${type.id}" 
+												 th:text="${type.name}">A Smoke Test</option>
+											<!-- 	
+											<option value="1">标准单间</option>
+											<option value="2">标准双人间</option>
+											<option value="3">套房</option> -->
+										</select>
+
+									</div>
+									<div class="form-group">
+										<div class="col-md-10">
+											<a id="search-btn" class="btn btn-primary">查询</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- ORDERS -->
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">订单列表</h3>
+							</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>订单号</th>
+										<th>用户</th>
+										<th>房间类型</th>
+										<th>数量</th>
+										<th>金额</th>
+										<th>下单时间</th>
+										<th class="text-center">订单状态</th>
+									</tr>
+								</thead>
+								<tbody id="order-info">
+								</tbody>
+							</table>
+
+						</div>
+						<div class='text-center'>
+							<ul class='pagination' id="page-div">
+							</ul>
+						</div>
+						<!-- /ORDERS -->
+						<div class="footer-tools">
+							<span class="go-top"> <i class="fa fa-chevron-up"></i> Top
+							</span>
+						</div>
+					</div>
+					<!-- /CONTENT-->
+				</div>
+			</div>
+			</div>
+			<!-- </div> -->
+	</section>
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+
+	<!-- TIMEAGO -->
+	<script type="text/javascript" src="/js/lib/jquery.timeago.min.js"></script>
+	<!-- COOKIE -->
+	<script type="text/javascript" src="/js/lib/jquery.cookie.min.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="/js/script.js"></script>
+	<script src="/js/order.js"></script>
+	<script>
+		jQuery(document).ready(
+				function() {
+					App.setPage("orders"); //Set current page
+					App.init(); //Initialise plugins and elements
+					$("a[class=order-manage]").parents('li:first').attr(
+							"class", "active");
+				});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title></title>
+	<script src="/js/lib/jquery.min.js"></script>
+	<link href="/css/bootstrap.css" rel="stylesheet"/>
+	<link href="/css/b_room.css" rel="stylesheet"/>
+	<script src="/js/lib/bootstrap.min.js"></script>
+	<script src="/js/lib/moment.min.js"></script>
+	<script src="/js/back_room.js"></script>
+	<!-- bootstrap -->
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<!-- <div class="col-md-2">
+	-->
+<div class="container-fluid">
+<div class="row">
+	<div class="col-md-2 sidebar">
+		<div class="input-group">
+			<input id="nav-search-input" type="text" class="form-control" placeholder="输入房间号查询" style="border: none"/>
+			<span class="input-group-btn" >
+				<button class="btn btn-default" type="submit" style="border: none"> <i class="glyphicon glyphicon-search"></i>
+			</button>
+
+				<!-- <a class="btn btn-default" href="item_search.html"> <i class="glyphicon glyphicon-search"></i>
+			</a>
+			-->
+		</span>
+	</div>
+	<div class="operation">
+	<button id="ruzhu" class="btn btn-primary">入住</button>
+	<button id="continue" class="btn btn-primary">续住</button>
+	<button id="quitRoom" class="btn btn-primary">退房</button>
+	
+	</div>
+	<div class="operation">
+		<button id="checking" class="btn btn-warning" style="width: 90%">预定订单入住</button>
+	</div>
+	<div id="cloneA" class="operation">
+	
+	</div>
+	<div id="xuzhu">
+		<input type="number" id="xuzhunum"/>
+		<button id="xuzhubtn">续住</button>
+	</div>
+</div><!-- col-md-2 -->
+
+<div class="col-md-offset-2 col-md-10 main">
+
+	<div class="col-md-12">
+		<ul class="nav nav-pills col-md-6" id="myTab">
+			<li class="active" onclick="singleClick()">
+				<a href="#single" data-toggle="tab">标准单间</a>
+			</li>
+			<li onclick="doubleClick()">
+				<a  href="#double" data-toggle="tab">双人间</a>
+			</li>
+			<li onclick="suitClick()">
+				<a  href="#suit" data-toggle="tab">套房</a>
+			</li>
+		</ul>
+		<div class="col-md-6" >
+			<a id="href1" href="#" class="btn btn-default">空房x<span id="span1"></span></a>
+			<a id="href2" href="#" class="btn btn-info">在住x<span id="span2"></span></a>
+			<a id="href3" href="#" class="btn btn-success">预定x<span id="span3"></span></a>
+			<a id="href4" href="#" class="btn btn-warning">故障x<span id="span4"></span></a>
+		</div>
+	</div>
+	
+	<div class="" style="padding-top:50px">
+
+	  <div class="col-md-6">
+	    <label for="exampleInputEmail1">入住日期</label>
+	    <input type="date" class="form-control" id="pretime" onchange="preChange()"/>
+	  </div>
+	  <div class="col-md-6">
+	    <label for="exampleInputPassword1">退房日期</label>
+	    <input type="date" class="form-control" id="posttime" onchange="postChange()"/>
+	  </div>
+	</div>
+	
+	<div class="tab-content" style="padding-top:80px">
+
+		<div id="single" class="tab-pane active" >
+				<p id="p1" >
+					<div th:each="room:${roomList}" th:switch="${room.status}">
+						<a th:case="1" href="#" class="btn btn-sq btn-default">
+							<br/>
+							<span th:text="${room.roomnumber}"></span>
+						
+							<br/>
+						</a>
+					
+						<a th:case="2" href="#" class="btn btn-sq btn-info">
+							<br/>
+							<span th:text="${room.roomnumber}"></span>
+							<br/>
+						</a>
+						
+						<a th:case="3" href="#" class="btn btn-sq btn-warning">
+							<br/>
+							<span th:text="${room.roomnumber}"></span>
+							
+							<br/>
+						</a>
+					</div>
+				</p>
+		</div>
+		<div id="double" class="tab-pane">
+			<p id="p2" >
+					
+				</p>
+		</div>
+		<div id="suit" class="tab-pane">
+			<p id="p3" >
+					
+				</p>
+		</div>
+	</div>
+	<!-- tab content -->
+</div>
+</div>
+	</div>
+	
+</body>
+</html>

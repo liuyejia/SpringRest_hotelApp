@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<title>Cloud Admin | Gallery</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- COLORBOX -->
+<link rel="stylesheet" type="text/css" href="/css/colorbox.min.css" />
+</head>
+<body>
+	<!-- HEADER -->
+	<div th:include="fragments/header">Header</div>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div th:include="fragments/siderbar">siderbar</div>
+
+		<div id="main-content">
+			<!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+
+			<!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+			<div class="container">
+				<div class="row">
+					<div id="content" class="col-lg-12">
+						<!-- PAGE HEADER-->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="page-header">
+									<!-- STYLER -->
+
+									<!-- /STYLER -->
+									<!-- BREADCRUMBS -->
+									<ul class="breadcrumb">
+										<li><i class="fa fa-home"></i> <a href="index.html">首页</a>
+										</li>
+										<li>房态管理</li>
+									</ul>
+									<!-- /BREADCRUMBS -->
+									<div class="clearfix">
+										<div class="col-md-3">
+											<div class="input-group">
+												<input id="nav-search-input" type="text"
+													class="form-control" placeholder="输入房间号查询" /> <span
+													class="input-group-btn">
+													<button class="btn btn-default" type="submit">
+														<i class="fa fa-search search-icon"></i>
+													</button> <!-- <a class="btn btn-default" href="item_search.html">
+												<i class="glyphicon glyphicon-search"></i>
+											</a>
+											-->
+												</span>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<select class="form-control">
+												<option>全部房间类型</option>
+												<option>标准单间</option>
+												<option>双人间</option>
+												<option>套房</option>
+											</select>
+										</div>
+										<!-- <div class="col-md-4" id="filter-controls">
+										    <a href="#" class="btn btn-info" data-filter="*">全部</a>
+											<a href="#" class="btn btn-default" data-filter="1">空房</a> 
+											<a href="#" class="btn btn-primary" data-filter="2">在住</a> 
+											<a href="#" class="btn btn-danger" data-filter="3">故障</a>
+										</div> -->
+										<div class="col-md-2">
+											<a href="#" class="btn btn-primary" onclick="addroom()"> <span
+												class="glyphicon glyphicon-plus"></span> 增加房间
+											</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- /PAGE HEADER -->
+						<!-- GALLERY -->
+						<div class="row">
+							<div class="col-md-12">
+								<!-- BOX -->
+								<div class="box">
+
+									<div class="box-body clearfix">
+
+										<div id="filter-items" class="row">
+										<!-- 	<div class="col-md-2" th:each="room : ${rooms}">
+												<div class="filter-content">
+													<a href="#" class="btn btn-sq btn-primary col-md-12"
+														style="height: 120px"> <br /> <span th:text="${room.roomnumber}"></span> <br />李三
+													</a>
+													<div class="hover-content">
+														<h4></h4>
+														<a class="btn btn-success hover-link"  th:onclick="'edit('+${room.id}+',this)'"> <i
+															class="fa fa-edit fa-1x"></i>
+														</a>
+													</div>
+												</div>
+											</div> -->
+
+
+										</div>
+									</div>
+								</div>
+								<!-- /BOX -->
+							</div>
+						</div>
+						<!-- /GALLERY -->
+						<div class="footer-tools">
+							<span class="go-top"> <i class="fa fa-chevron-up"></i> Top
+							</span>
+						</div>
+					</div>
+					<!-- /CONTENT-->
+				</div>
+			</div>
+		</div>
+	</section>
+			<!-- Modal -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">编辑房间</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<input type="hidden" id="edit-id" />
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">房间号：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="edit-roomnumber" value="" />
+								<input type="hidden" id="o-roomnumber" />
+							</div>
+							<span class="label label-danger" id="room-alert" style="display: none">该房间号已被使用</span>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">楼层：</label>
+							<div class="col-sm-6">
+								<input type="number" class="form-control" id="edit-floor" value="" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">状态:</label>
+							<div class="col-sm-6">
+								<select class="form-control" id="edit-status">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">房间类型：</label>
+							<div class="col-sm-6">
+								<select class="form-control" id="edit-type">
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="edit-btn">更新房间</button>
+				</div>
+			</div>
+		</div>
+	</div>
+				<!-- Modal -->
+	<div class="modal fade" id="typeModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="width:800px;">
+			<div class="modal-content">
+					<form class="form-horizontal">
+						<div class="col-md-3">
+				<!-- <form class="form-horizontal"> -->
+					<div class="form-group">
+						<img src="" class="img-responsive"
+							alt="Cinque Terre" id="type-img" />
+					</div>
+					<div class="form-group">
+						<input type="file" id="file" name="file" />
+					</div>
+				<!-- </form> -->
+
+			</div>
+			<div class="col-md-9">
+				<div class="col-md-6">
+					<input type="hidden" id="type-id" />
+					<!-- <form action="" class="form-horizontal" role="form"> -->
+						<div class="form-group">
+							<label for="name" class="col-md-2 control-label">名称</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="name" id="name" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-md-2 control-label">原价</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="price" id="price" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-md-2 control-label">折扣</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="discount" id="discount" />
+							</div>
+						</div>
+					<!-- </form> -->
+				</div>
+				<div class="col-md-6">
+					<!-- <form action="" class="form-horizontal" role="form"
+						style="padding-top: 48px"> -->
+
+						<div class="form-group">
+							<label for="name" class="col-md-4 control-label">房间总数</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" name="total" id="total" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-md-4 control-label">房间余量</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" name="remain" id="remain" />
+							</div>
+						</div>
+				<!-- 	</form> -->
+				</div>
+				<div class="col-md-12">
+					<label for="infomation" class="control-label"
+						style="float: left; padding-left: 23px">设施</label>
+					<div class="col-md-12" style="padding-left: 28px; width: 94.322%">
+						<textarea class="form-control" rows="3" name="facility" id="facility"></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<label for="infomation" class="col-md-2 control-label">房间介绍</label>
+				<div class="col-md-10">
+					<textarea class="form-control" rows="5" name="introduction" id="introduction"></textarea>
+				</div>
+			</div>
+					</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="type-btn">更新房间类型</button>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- Modal -->
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">增加房间</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+					<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">房间类型：</label>
+							<div class="col-sm-6">
+								<select class="form-control" id="add-type">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">房间号：</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="add-roomnumber" value="" />
+							</div>
+							<span class="label label-danger" id="aroom-alert" style="display: none">该房间号已被使用</span>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">楼层：</label>
+							<div class="col-sm-6">
+								<input type="number" class="form-control" id="add-floor" value="" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-2 control-label">房间状态：</label>
+							<div class="col-sm-6">
+								<select class="form-control" id="add-status">
+								</select>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="add-btn">增加房间</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<!-- ISOTOPE -->
+	<script type="text/javascript" src="/js/lib/jquery.isotope.min.js"></script>
+	<script type="text/javascript" src="/js/lib/imagesloaded.pkgd.min.js"></script>
+	<!-- COLORBOX -->
+	<script type="text/javascript" src="/js/lib/jquery.colorbox.min.js"></script>
+	<!-- COOKIE -->
+	<script type="text/javascript" src="/js/lib/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="/js/lib/ajaxfileupload.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="/js/script.js"></script>
+	<script src="/js/room.js"></script>
+	<script>
+	/* 	jQuery(document).ready(
+				function() {
+					App.setPage("gallery"); //Set current page
+					App.init(); //Initialise plugins and elements
+					$("a[class=room-manage]").parents('li:first').attr("class",
+							"active");
+				}); */
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

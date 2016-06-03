@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div id="sidebar" class="sidebar">
+		<div class="sidebar-menu nav-collapse">
+			<div class="divide-20"></div>
+			<!-- SEARCH BAR -->
+			<div id="search-bar">
+				<input class="search" type="text" placeholder="Search"/>
+				<i class="fa fa-search search-icon"></i>
+			</div>
+			<!-- /SEARCH BAR -->
+
+			<!-- SIDEBAR QUICK-LAUNCH -->
+			<!-- <div id="quicklaunch"-->
+			<!-- /SIDEBAR QUICK-LAUNCH -->
+
+			<!-- SIDEBAR MENU -->
+			<ul>
+				<li class="">
+					<a href="/admin/" class="home">
+						<i class="fa fa-tachometer fa-fw"></i>
+						<span class="menu-text">首页</span>
+						<span class="selected"></span>
+					</a>
+				</li>
+				<li class="has-sub" id="chart-li">
+					<a href="javascript:;" class="">
+						<i class="fa fa-bar-chart-o fa-fw"></i>
+						<span class="menu-text">报表统计</span>
+						<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li>
+							<a href="" class="charts-manage">
+								<span class="sub-menu-text">Flot Charts</span>
+							</a>
+						</li>
+						<li>
+							<a class="" href="xcharts.html">
+								<span class="sub-menu-text">xCharts</span>
+							</a>
+						</li>
+
+						<li>
+							<a class="" href="others.html">
+								<span class="sub-menu-text">Others</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="" class="order-manage">
+						<i class="fa fa-table fa-fw"></i>
+						<span class="menu-text">订单管理</span>
+					</a>
+				</li>
+				<li class="has-sub" id="room-li">
+					<a th:href="@{~/admin/room-manage/}" class="">
+						<i class="fa fa-bar-chart-o fa-fw"></i>
+						<span class="menu-text">房间管理</span>
+						<span class="arrow"></span>
+					</a>
+					<ul class="sub" id="room-ul">
+						<!-- <li th:each="type : ${types}">
+						<input type="hidden" th:value='${type.id}' />
+						<button class="btn btn-default btn-xs treebtn" style="">修改</button>
+							<a href="#" th:onclick="'roomClick('+${type.id}+',this)'">
+								<span class="sub-menu-text" th:text="${type.name}">标准单人间</span>
+							</a>
+						</li>
+						 <li>
+							<a class="" th:href="@{~/admin/insert-type/}">
+								<span class="sub-menu-text">增加房间类型</span>
+							</a>
+						</li> -->
+						<!-- <li>
+						<button class="btn btn-default btn-xs treebtn">修改</button>
+							<a class="" href="xcharts.html">
+								<span class="sub-menu-text">标准双人间</span>
+							</a>
+						</li>
+
+						<li>
+						<button class="btn btn-default btn-xs treebtn">修改</button>
+							<a class="" href="others.html">
+								<span class="sub-menu-text">套房</span>
+							</a>
+						</li> -->
+					</ul>
+				</li>
+				<!-- <li>
+					<a href="room-manage/" class="room-manage">
+						<i class="fa fa-picture-o fa-fw"></i>
+						<span class="menu-text">房态管理</span>
+					</a>
+				</li> -->
+				<li>
+					<a href="account-manage/" class="account-manage">
+						<i class="fa fa-pencil-square-o fa-fw"></i>
+						<span class="menu-text">账号管理</span>
+					</a>
+
+				</li>
+
+			</ul>
+			<!-- /SIDEBAR MENU -->
+		</div>
+	</div>
+	<!-- /SIDEBAR -->
+</body>
+</html>
